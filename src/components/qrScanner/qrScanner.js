@@ -9,7 +9,7 @@ const url = "https://ginocerruti.com/item/";
 
 const defaultInfoModal = {
   isOpen: false,
-  text: ""
+  text: "",
 };
 
 export const QrScanner = () => {
@@ -28,28 +28,28 @@ export const QrScanner = () => {
         } else {
           setInfoModal({
             isOpen: true,
-            text: "Please scan only Gino Cerutti QR codes."
+            text: "Please scan only Gino Cerutti QR codes.",
           });
         }
       }
     } catch (e) {
       setInfoModal({
         isOpen: true,
-        text: "Unknown Error("
+        text: "Unknown Error(",
       });
       console.info(e);
     }
   };
 
   const addProductToBasket = (code, sizes, color, image) => {
-    sizes.forEach(productSize => {
+    sizes.forEach((productSize) => {
       addItemToBasket({
         id: `${code}_${productSize}_${color}`,
         code,
         size: productSize,
         color,
         count: 1,
-        image
+        image,
       });
     });
     setProductCode(null);
@@ -65,11 +65,11 @@ export const QrScanner = () => {
             className="scannerBlock"
             videoContainerStyle={{
               padding: 0,
-              width: '100%'
+              width: "100%",
             }}
             videoStyle={{
-             position: 'relative',
-             width: '100%'
+              position: "relative",
+              width: "100%",
             }}
             onResult={onResult}
             style={{ minWidth: "400px" }}
@@ -89,7 +89,11 @@ export const QrScanner = () => {
         text={infoModal.text}
         onClick={() => setInfoModal(defaultInfoModal)}
       />
-      <ProductModal code={productCode} onClick={addProductToBasket} />
+      <ProductModal
+        onClose={() => setProductCode(null)}
+        code={productCode}
+        onClick={addProductToBasket}
+      />
     </div>
   );
 };

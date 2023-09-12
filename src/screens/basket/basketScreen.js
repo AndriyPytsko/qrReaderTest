@@ -12,20 +12,19 @@ export function BasketScreen() {
     decrementItemCount,
     clearAllBasket,
     setItemCount,
-    checkItemCount
+    checkItemCount,
   } = useContext(basketContext);
 
   const [isOpenModal, setOpenModal] = useState(false);
 
-  const handleChangeCount = e => {
+  const handleChangeCount = (e) => {
     const newCount = +e.target.value;
     const id = e.target.name;
     setItemCount(id, newCount);
   };
 
-  const handleBlurCount = e => {
+  const handleBlurCount = (e) => {
     const id = e.target.name;
-    console.log(id);
     checkItemCount(id);
   };
 
@@ -47,10 +46,10 @@ export function BasketScreen() {
           </div>
         )}
         <p className="basketTitle">
-          Your basket {!Boolean(basket.length) && "is empty!!!"}
+          Your basket {!Boolean(basket.length) && "is empty"}
         </p>
         <div className="basketList">
-          {basket.map(item => (
+          {basket.map((item) => (
             <div key={item.id} className="basketItem">
               <img src={item.image} className="basketImage" />
               <div className="basketContent">

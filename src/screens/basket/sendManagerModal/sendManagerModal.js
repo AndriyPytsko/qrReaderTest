@@ -6,25 +6,25 @@ import { basketContext } from "../../../providers/basketProvider/basketProvider"
 const INITIAL_STATE = {
   email: "",
   retailer_name: "",
-  company_name: ""
+  company_name: "",
 };
 
 export function SendManagerModal(props) {
   const { isOpen, onClick } = props;
 
-  const { basket } = useContext(basketContext);
+  const { basket, clearAllBasket } = useContext(basketContext);
   const [formState, setFormState] = useState(INITIAL_STATE);
   const [isSuccess, setSuccess] = useState(false);
   const [isDisabled, setDisabled] = useState(false);
 
-  const handleChange = e => {
-    setFormState(prevState => ({
+  const handleChange = (e) => {
+    setFormState((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     setDisabled(true);
     e.stopPropagation();
     e.preventDefault();
@@ -32,6 +32,7 @@ export function SendManagerModal(props) {
       const response = await apiProduct.sendBasket({ ...formState, basket });
       if (response) {
         setFormState(INITIAL_STATE);
+        clearAllBasket();
         setSuccess(true);
       }
     } catch (e) {
@@ -93,7 +94,7 @@ export function SendManagerModal(props) {
         </div>
       ) : (
         <div className="infoModalContainer">
-          <p className="infoModalText">Data send success!!!</p>
+          <p className="basketModalTitle">Order received</p>
           <button onClick={onClick} className="infoModalButton">
             OK
           </button>

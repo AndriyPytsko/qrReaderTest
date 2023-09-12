@@ -12,6 +12,10 @@
   color: black;
   display: block;
 }
+.buttons {
+  padding: 11px 20px;
+  border-radius: 10px;
+}
 .clearButton {
   border-color: #f35050;
   color: #f35050;

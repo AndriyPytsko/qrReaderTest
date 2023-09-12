@@ -7,21 +7,20 @@
   background: transparent;
   text-align: center;
   color: black;
-  margin-top: 40px;
 }
 .scannerContainer {
   width: 100vw;
-  margin-top: 100px;
-  min-height: 400px;
+  min-height: calc(100vh - 63px);
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 40px;
   flex-direction: column;
 }
 .scannerBlock {
   width: 90%;
   border: 2px solid black;
-  -webkit-box-shadow: 0 3px 48px -11px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0 3px 48px -11px rgba(0,0,0,0.75);
-  box-shadow: 0 3px 48px -11px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0 3px 48px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 3px 48px -11px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 3px 48px -11px rgba(0, 0, 0, 0.75);
 }

@@ -8,12 +8,12 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <HomeScreen />
+      element: <HomeScreen />,
     },
     {
       path: "/basket",
-      element: <BasketScreen />
-    }
+      element: <BasketScreen />,
+    },
   ]);
 
   return (
