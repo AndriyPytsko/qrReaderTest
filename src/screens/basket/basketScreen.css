@@ -1,0 +1,94 @@
+.buttons,
+.clearButton,
+.sendManagerButton {
+  min-width: 30px;
+  padding: 18px 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 900;
+  background: transparent;
+  text-align: center;
+  color: black;
+  display: block;
+}
+.clearButton {
+  border-color: #f35050;
+  color: #f35050;
+}
+.sendManagerButton {
+  border-color: darkslateblue;
+  color: darkslateblue;
+}
+.basketButtonBlock,
+.basketTitleBlock {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 18px;
+}
+.basketTitleBlock span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 150px;
+}
+.basketItem {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.basketImage {
+  width: 60px;
+}
+.basketList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.basketTitle {
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+}
+.basketContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.basketItemCount {
+  max-width: 30px;
+  text-align: center;
+  display: block;
+}
+.basketPage {
+  padding: 20px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.basketForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+.inputField {
+  width: 250px;
+  outline: none;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+.basketModalTitle {
+  font-size: 24px;
+  margin: 0;
+}
+.basketSubmitBlock {
+  display: flex;
+  gap: 10px;
+}

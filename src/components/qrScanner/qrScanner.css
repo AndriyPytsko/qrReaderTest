@@ -1,0 +1,27 @@
+.scanButton {
+  width: 300px;
+  padding: 18px 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  font-size: 18px;
+  background: transparent;
+  text-align: center;
+  color: black;
+  margin-top: 40px;
+}
+.scannerContainer {
+  width: 100vw;
+  margin-top: 100px;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.scannerBlock {
+  width: 90%;
+  border: 2px solid black;
+  -webkit-box-shadow: 0 3px 48px -11px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0 3px 48px -11px rgba(0,0,0,0.75);
+  box-shadow: 0 3px 48px -11px rgba(0,0,0,0.75);
+}
