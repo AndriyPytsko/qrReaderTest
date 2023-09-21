@@ -10,6 +10,7 @@
     "axios": "^1.5.0",
     "babel-eslint": "^10.1.0",
     "react": "^17.0.0",
+    "react-cookie": "^6.1.1",
     "react-dom": "^17.0.0",
     "react-qr-reader": "^3.0.0-beta-1",
     "react-router-dom": "^6.15.0",
@@ -21,7 +22,7 @@
     "start": "./node_modules/.bin/react-scripts start",
     "build": "./node_modules/.bin/react-scripts build",
     "test": "./node_modules/.bin/react-scripts test",
-    "pretty": "npx prettier --write ..",
+    "pretty": "npx prettier --write ../qr-reader",
     "eject": "./node_modules/.bin/react-scripts eject"
   },
   "browserslist": {

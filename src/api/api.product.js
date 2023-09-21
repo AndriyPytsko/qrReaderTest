@@ -1,15 +1,16 @@
+import { axiosCustom } from "./api.custom";
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 class ServiceProduct {
   async getProductImage(code) {
-    const res = await axios.get(`${API_URL}/product/images/${code}/`);
+    const res = await axiosCustom.get(`${API_URL}/product/images/${code}/`);
     return res.data.data;
   }
 
   async getProductInfo(code) {
-    const res = await axios.get(`${API_URL}/product/${code}/`);
+    const res = await axiosCustom.get(`${API_URL}/product/${code}/`);
     return res.data.data;
   }
 

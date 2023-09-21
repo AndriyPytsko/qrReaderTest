@@ -56,7 +56,11 @@ export const QrScanner = () => {
   };
 
   return (
-    <div className={`scannerContainer ${startScan ? 'scannerContainerActive': ''}`}>
+    <div
+      className={`scannerContainer ${
+        startScan ? "scannerContainerActive" : ""
+      }`}
+    >
       {startScan && (
         <>
           <QrReader

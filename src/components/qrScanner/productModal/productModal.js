@@ -86,9 +86,16 @@ export function ProductModal(props) {
                   );
                   return (
                     <span
-                      className={`productSizeChip ${
-                        isActive ? "productSizeChipActive" : ""
-                      }`}
+                      className={`productSizeChip 
+                      ${item.quantityInStock ? "inStock" : ""}
+                      ${item.quantityInProduction ? "inProd" : ""}
+                      ${
+                        !item.quantityInProduction && !item.quantityInStock
+                          ? "inOrder"
+                          : ""
+                      }
+                      ${isActive ? "productSizeChipActive" : ""} 
+                      `}
                       key={newSize}
                       onClick={() => handleChangeSize(isActive, newSize)}
                     >
