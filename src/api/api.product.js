@@ -1,5 +1,4 @@
 import { axiosCustom } from "./api.custom";
-import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -15,7 +14,7 @@ class ServiceProduct {
   }
 
   async sendBasket(data) {
-    const res = await axios.post(`${API_URL}/send/`, data);
+    const res = await axiosCustom.post(`${API_URL}/send/`, data);
     return res.data;
   }
 }

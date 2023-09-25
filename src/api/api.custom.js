@@ -17,14 +17,20 @@ export function getTokenFromCookies() {
 
 const instance = axios.create();
 
-instance.interceptors.request.use(
-  async (config) => {
-    const token = getTokenFromCookies();
+instance.interceptors.request.use(async (config) => {
+  const token = getTokenFromCookies();
+  config.headers.Authorization = `Token ${token}`;
+  return config;
+});
 
-    config.headers.Authorization = `Token ${token}`;
-    return config;
+instance.interceptors.response.use(
+  (response) => {
+    return response;
   },
   (error) => {
+    if (error.response && error.response.status === 403) {
+      window.location.href = "/login";
+    }
     return Promise.reject(error);
   }
 );

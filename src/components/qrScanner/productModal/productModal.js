@@ -16,15 +16,12 @@ export function ProductModal(props) {
     const dataInfo = await apiProduct.getProductInfo(code);
     const dataImage = await apiProduct.getProductImage(code);
     const colors = [...new Set(dataInfo.map((item) => item.productColorName))];
-    const activeSize = dataInfo.find(
-      (item) => item.productColorName === colors[0]
-    ).productSizeName;
     setProductInfo({
       images: dataImage.map((item) => item.url),
       info: dataInfo,
       colors,
       activeColor: colors[0],
-      activeSizes: [activeSize],
+      activeProducts: [dataInfo[0]],
     });
   };
 
@@ -33,21 +30,26 @@ export function ProductModal(props) {
     setProductInfo((prevState) => ({
       ...prevState,
       activeColor,
-      activeSizes: [
-        prevState.info.find((item) => item.productColorName === activeColor)
-          .productSizeName,
+      activeProducts: [
+        prevState.info.find((item) => item.productColorName === activeColor),
       ],
     }));
   };
 
-  const handleChangeSize = (isActive, newSize) => {
+  const handleChangeSize = (isActive, newProduct) => {
     setProductInfo((prevState) => {
-      const activeSizes = isActive
-        ? [...prevState.activeSizes.filter((size) => size !== newSize)]
-        : [...prevState.activeSizes, newSize];
+      const activeProducts = isActive
+        ? [
+            ...prevState.activeProducts.filter(
+              (item) => item.productSizeName !== newProduct.productSizeName
+            ),
+          ]
+        : [...prevState.activeProducts, newProduct];
       return {
         ...prevState,
-        activeSizes: !activeSizes.length ? prevState.activeSizes : activeSizes,
+        activeProducts: !activeProducts.length
+          ? prevState.activeProducts
+          : activeProducts,
       };
     });
   };
@@ -81,8 +83,8 @@ export function ProductModal(props) {
                 )
                 .map((item) => {
                   const newSize = item.productSizeName;
-                  const isActive = productInfo.activeSizes.find(
-                    (size) => size === newSize
+                  const isActive = productInfo.activeProducts.find(
+                    (product) => product.productSizeName === newSize
                   );
                   return (
                     <span
@@ -97,7 +99,7 @@ export function ProductModal(props) {
                       ${isActive ? "productSizeChipActive" : ""} 
                       `}
                       key={newSize}
-                      onClick={() => handleChangeSize(isActive, newSize)}
+                      onClick={() => handleChangeSize(isActive, item)}
                     >
                       {newSize}
                     </span>
@@ -107,12 +109,7 @@ export function ProductModal(props) {
             <div className="productModalButtonContainer">
               <button
                 onClick={() =>
-                  onClick(
-                    code,
-                    productInfo.activeSizes,
-                    productInfo.activeColor,
-                    productInfo.images[0]
-                  )
+                  onClick(productInfo.activeProducts, productInfo.images[0])
                 }
                 className="productModalButton"
               >

@@ -41,15 +41,18 @@ export const QrScanner = () => {
     }
   };
 
-  const addProductToBasket = (code, sizes, color, image) => {
-    sizes.forEach((productSize) => {
+  const addProductToBasket = (products, image) => {
+    products.forEach((product) => {
       addItemToBasket({
-        id: `${code}_${productSize}_${color}`,
-        code,
-        size: productSize,
-        color,
+        id: `${product.code}_${product.productSizeName}_${product.productColorName}`,
+        code: product.code,
+        size: product.productSizeName,
+        color: product.productColorName,
         count: 1,
         image,
+        colorId: product.productColorId,
+        sizeId: product.productSizeId,
+        productId: product.productId,
       });
     });
     setProductCode(null);

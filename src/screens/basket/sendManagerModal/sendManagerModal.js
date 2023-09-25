@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./sendManagerModal.css";
 import { apiProduct } from "../../../api/api.product";
 import { basketContext } from "../../../providers/basketProvider/basketProvider";
+import { apiCart } from "../../../api/api.cart";
 
 const INITIAL_STATE = {
   email: "",
@@ -24,12 +25,26 @@ export function SendManagerModal(props) {
     }));
   };
 
+  const transformBasket = (basket) => {
+    return {
+      basket: basket.map((product) => ({
+        id: product.productId,
+        size: product.sizeId,
+        color: product.colorId,
+        count: product.count,
+      })),
+    };
+  };
+
   const onSubmit = async (e) => {
     setDisabled(true);
     e.stopPropagation();
     e.preventDefault();
     try {
-      const response = await apiProduct.sendBasket({ ...formState, basket });
+      const response = await Promise.all([
+        apiProduct.sendBasket({ ...formState, basket }),
+        apiCart.sendBasket(transformBasket(basket)),
+      ]);
       if (response) {
         setFormState(INITIAL_STATE);
         clearAllBasket();

@@ -1,4 +1,4 @@
-import { axiosCustom, getTokenFromCookies } from "./api.custom";
+import { axiosCustom } from "./api.custom";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -12,7 +12,6 @@ class ServiceSession {
   }
 
   async checkSession() {
-    console.log(getTokenFromCookies());
     const res = await axiosCustom.get(`${API_URL}/checkLogin/`);
     return res.data.data;
   }
