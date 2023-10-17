@@ -101,3 +101,28 @@
   gap: 10px;
   font-size: 24px;
 }
+.disableProductModalWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.41);
+}
+
+.disableProductModal {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.disableProductModalText {
+  font-size: 24px;
+}

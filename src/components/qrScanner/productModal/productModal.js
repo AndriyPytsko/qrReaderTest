@@ -7,6 +7,7 @@ export function ProductModal(props) {
   const { code, onClick, onClose } = props;
 
   const [productInfo, setProductInfo] = useState(null);
+  const [errorState, setErrorState] = useState(false);
 
   useEffect(() => {
     if (code) getProductInfo(code);
@@ -21,7 +22,11 @@ export function ProductModal(props) {
       info: dataInfo,
       colors,
       activeColor: colors[0],
-      activeProducts: [dataInfo[0]],
+      activeProducts: [
+        dataInfo.find(
+          (item) => item.productColorName === colors[0] && !item.restricted
+        ),
+      ],
     });
   };
 
@@ -37,6 +42,10 @@ export function ProductModal(props) {
   };
 
   const handleChangeSize = (isActive, newProduct) => {
+    if (!isActive && newProduct.restricted) {
+      setErrorState(true);
+      return;
+    }
     setProductInfo((prevState) => {
       const activeProducts = isActive
         ? [
@@ -122,6 +131,23 @@ export function ProductModal(props) {
           </>
         ) : (
           <div className="loadingModal">Loading...</div>
+        )}
+        {errorState && (
+          <div className="disableProductModalWrapper">
+            <div className="disableProductModal">
+              <div className="disableProductModalText">
+                You are NOT enable to order product in production of this
+                category online. Please contact the office to place an order for
+                this in stock order dress
+              </div>
+              <button
+                onClick={() => setErrorState(false)}
+                className="productModalButton"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </div>
