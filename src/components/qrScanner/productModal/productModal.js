@@ -136,9 +136,7 @@ export function ProductModal(props) {
           <div className="disableProductModalWrapper">
             <div className="disableProductModal">
               <div className="disableProductModalText">
-                You are NOT enable to order product in production of this
-                category online. Please contact the office to place an order for
-                this in stock order dress
+                Please contact the office to be able to order this dress
               </div>
               <button
                 onClick={() => setErrorState(false)}
