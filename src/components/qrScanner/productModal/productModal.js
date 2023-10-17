@@ -17,16 +17,15 @@ export function ProductModal(props) {
     const dataInfo = await apiProduct.getProductInfo(code);
     const dataImage = await apiProduct.getProductImage(code);
     const colors = [...new Set(dataInfo.map((item) => item.productColorName))];
+    const defaultProduct = dataInfo.find(
+      (item) => item.productColorName === colors[0] && !item.restricted
+    );
     setProductInfo({
       images: dataImage.map((item) => item.url),
       info: dataInfo,
       colors,
       activeColor: colors[0],
-      activeProducts: [
-        dataInfo.find(
-          (item) => item.productColorName === colors[0] && !item.restricted
-        ),
-      ],
+      activeProducts: defaultProduct ? [defaultProduct] : [],
     });
   };
 
@@ -35,9 +34,7 @@ export function ProductModal(props) {
     setProductInfo((prevState) => ({
       ...prevState,
       activeColor,
-      activeProducts: [
-        prevState.info.find((item) => item.productColorName === activeColor),
-      ],
+      activeProducts: [],
     }));
   };
 
@@ -117,6 +114,7 @@ export function ProductModal(props) {
             </div>
             <div className="productModalButtonContainer">
               <button
+                disabled={!productInfo.activeProducts.length}
                 onClick={() =>
                   onClick(productInfo.activeProducts, productInfo.images[0])
                 }
