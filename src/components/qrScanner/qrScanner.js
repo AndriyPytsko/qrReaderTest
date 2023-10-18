@@ -23,7 +23,7 @@ export const QrScanner = () => {
       if (result) {
         if (result?.text?.startsWith(url)) {
           const textAfterWord = result?.text?.slice(url.length)?.trim();
-          setProductCode(textAfterWord);
+          setProductCode(textAfterWord?.toUpperCase());
           setStartScan(false);
         } else {
           setInfoModal({
