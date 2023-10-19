@@ -41,7 +41,7 @@ export function BasketScreen() {
               className="sendManagerButton"
               onClick={() => setOpenModal(true)}
             >
-              Send To Manager
+              Send To Order
             </button>
           </div>
         )}

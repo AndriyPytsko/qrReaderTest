@@ -17,15 +17,12 @@ export function ProductModal(props) {
     const dataInfo = await apiProduct.getProductInfo(code);
     const dataImage = await apiProduct.getProductImage(code);
     const colors = [...new Set(dataInfo.map((item) => item.productColorName))];
-    const defaultProduct = dataInfo.find(
-      (item) => item.productColorName === colors[0] && !item.restricted
-    );
     setProductInfo({
       images: dataImage.map((item) => item.url),
       info: dataInfo,
       colors,
       activeColor: colors[0],
-      activeProducts: defaultProduct ? [defaultProduct] : [],
+      activeProducts: [],
     });
   };
 
@@ -53,9 +50,7 @@ export function ProductModal(props) {
         : [...prevState.activeProducts, newProduct];
       return {
         ...prevState,
-        activeProducts: !activeProducts.length
-          ? prevState.activeProducts
-          : activeProducts,
+        activeProducts,
       };
     });
   };
@@ -68,6 +63,7 @@ export function ProductModal(props) {
         {productInfo ? (
           <>
             <img className="productModalImage" src={productInfo.images[0]} />
+            <div className="productCode">{code}</div>
             <div className="productModalColors">
               <span>Color: </span>
               <Select
@@ -103,6 +99,7 @@ export function ProductModal(props) {
                           : ""
                       }
                       ${isActive ? "productSizeChipActive" : ""} 
+                      ${item.restricted ? "productRestricted" : ""}
                       `}
                       key={newSize}
                       onClick={() => handleChangeSize(isActive, item)}

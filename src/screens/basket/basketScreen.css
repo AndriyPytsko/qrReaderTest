@@ -96,3 +96,7 @@
   display: flex;
   gap: 10px;
 }
+.productCode {
+  font-size: 18px;
+  font-weight: bold;
+}

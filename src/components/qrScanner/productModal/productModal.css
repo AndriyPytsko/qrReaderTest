@@ -38,6 +38,9 @@
   text-align: center;
   color: black;
 }
+.productModalButton[disabled] {
+  opacity: 0.5;
+}
 .productModalButtonContainer {
   display: flex;
   gap: 10px;
@@ -67,16 +70,19 @@
 .inProd {
   border-color: orange;
   color: orange;
+  opacity: 0.7;
 }
 
 .inStock {
   border-color: #7d7;
   color: #7d7;
+  opacity: 0.7;
 }
 
 .inOrder {
   color: #003f80;
   border-color: #003f80;
+  opacity: 0.7;
 }
 .productSizeChipActive.inStock {
   background: #7d7;
@@ -125,4 +131,9 @@
 }
 .disableProductModalText {
   font-size: 24px;
+}
+.productRestricted {
+  border-color: red;
+  color: red;
+  opacity: 1;
 }
