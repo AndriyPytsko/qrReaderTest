@@ -3,6 +3,7 @@ import { Header } from "../../components/header/header";
 import { basketContext } from "../../providers/basketProvider/basketProvider";
 import "./basketScreen.css";
 import { SendManagerModal } from "./sendManagerModal/sendManagerModal";
+import { Link } from "react-router-dom";
 
 export function BasketScreen() {
   const {
@@ -32,6 +33,9 @@ export function BasketScreen() {
     <div>
       <Header />
       <div className="basketPage">
+        <Link to="/" className="backButton">
+          Back to scan
+        </Link>
         {Boolean(basket.length) && (
           <div className="basketButtonBlock">
             <button className="clearButton" onClick={clearAllBasket}>
