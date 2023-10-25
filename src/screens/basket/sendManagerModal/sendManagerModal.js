@@ -3,27 +3,15 @@ import "./sendManagerModal.css";
 import { apiProduct } from "../../../api/api.product";
 import { basketContext } from "../../../providers/basketProvider/basketProvider";
 import { apiCart } from "../../../api/api.cart";
-
-const INITIAL_STATE = {
-  email: "",
-  retailer_name: "",
-  company_name: "",
-};
+import {sessionContext} from "../../../providers/sessionProvider/sessionProvider";
 
 export function SendManagerModal(props) {
   const { isOpen, onClick } = props;
 
+  const { session } = useContext(sessionContext);
   const { basket, clearAllBasket } = useContext(basketContext);
-  const [formState, setFormState] = useState(INITIAL_STATE);
   const [isSuccess, setSuccess] = useState(false);
   const [isDisabled, setDisabled] = useState(false);
-
-  const handleChange = (e) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const transformBasket = (basket) => {
     return {
@@ -36,17 +24,14 @@ export function SendManagerModal(props) {
     };
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async () => {
     setDisabled(true);
-    e.stopPropagation();
-    e.preventDefault();
     try {
       const response = await Promise.all([
-        apiProduct.sendBasket({ ...formState, basket }),
+        apiProduct.sendBasket({ basket, email: session.email }),
         apiCart.sendBasket(transformBasket(basket)),
       ]);
       if (response) {
-        setFormState(INITIAL_STATE);
         clearAllBasket();
         setSuccess(true);
       }
@@ -63,40 +48,11 @@ export function SendManagerModal(props) {
     <div className="infoModalWrapper">
       {!isSuccess ? (
         <div className="infoModalContainer">
-          <p className="basketModalTitle">Enter your info</p>
-          <form className="basketForm" onSubmit={onSubmit}>
-            <input
-              className="inputField"
-              placeholder="Your e-mail*"
-              name="email"
-              pattern="[a-z0-9._%+-.]+@[a-z0-9.-.]+.[a-z]{2,4}$"
-              type="email"
-              required
-              value={formState.email}
-              onChange={handleChange}
-            />
-            <input
-              className="inputField"
-              placeholder="Your name*"
-              name="retailer_name"
-              required
-              maxLength={50}
-              value={formState.retailer_name}
-              onChange={handleChange}
-            />
-            <input
-              className="inputField"
-              placeholder="Your company name*"
-              name="company_name"
-              required
-              maxLength={50}
-              value={formState.company_name}
-              onChange={handleChange}
-            />
+          <p className="basketModalTitle">Send all items to your shopping cart on the website?</p>
             <div className="basketSubmitBlock">
               <button
                 disabled={isDisabled}
-                type="submit"
+                onClick={onSubmit}
                 className="infoModalButton"
               >
                 {isDisabled ? "..." : "SEND"}
@@ -105,7 +61,6 @@ export function SendManagerModal(props) {
                 CLOSE
               </button>
             </div>
-          </form>
         </div>
       ) : (
         <div className="infoModalContainer">

@@ -112,14 +112,18 @@ export function ProductModal(props) {
             <div className="productModalButtonContainer">
               <button
                 disabled={!productInfo.activeProducts.length}
-                onClick={() =>
+                onClick={() =>{
                   onClick(productInfo.activeProducts, productInfo.images[0])
-                }
+                  setProductInfo(null);
+                }}
                 className="productModalButton"
               >
                 Add to basket
               </button>
-              <button onClick={onClose} className="productModalButton">
+              <button onClick={() => {
+                onClose();
+                setProductInfo(null);
+              }} className="productModalButton">
                 Close
               </button>
             </div>
@@ -131,7 +135,7 @@ export function ProductModal(props) {
           <div className="disableProductModalWrapper">
             <div className="disableProductModal">
               <div className="disableProductModalText">
-                Please contact the office to be able to order this dress
+                Please <a href="https://wa.me/447405979227">WhatsApp us</a> if you still want to order this dress
               </div>
               <button
                 onClick={() => setErrorState(false)}

@@ -131,9 +131,13 @@
 }
 .disableProductModalText {
   font-size: 24px;
+  text-align: center;
 }
 .productRestricted {
   border-color: red;
   color: red;
   opacity: 1;
+}
+.linkWhatsApp {
+  display: block;
 }

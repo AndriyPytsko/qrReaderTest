@@ -10,7 +10,7 @@
 }
 .scannerContainer {
   width: 100vw;
-  min-height: calc(100vh - 63px);
+  min-height: calc(100vh - 163px);
   display: flex;
   justify-content: center;
   align-items: center;
