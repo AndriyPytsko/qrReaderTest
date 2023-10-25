@@ -135,7 +135,7 @@ export function ProductModal(props) {
           <div className="disableProductModalWrapper">
             <div className="disableProductModal">
               <div className="disableProductModalText">
-                Please <a href="https://wa.me/447405979227">WhatsApp us</a> if you still want to order this dress
+                Please <a href="https://wa.me/447405978227">WhatsApp us</a> if you still want to order this dress
               </div>
               <button
                 onClick={() => setErrorState(false)}
