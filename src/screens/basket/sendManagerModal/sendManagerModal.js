@@ -3,7 +3,7 @@ import "./sendManagerModal.css";
 import { apiProduct } from "../../../api/api.product";
 import { basketContext } from "../../../providers/basketProvider/basketProvider";
 import { apiCart } from "../../../api/api.cart";
-import {sessionContext} from "../../../providers/sessionProvider/sessionProvider";
+import { sessionContext } from "../../../providers/sessionProvider/sessionProvider";
 
 export function SendManagerModal(props) {
   const { isOpen, onClick } = props;
@@ -48,19 +48,21 @@ export function SendManagerModal(props) {
     <div className="infoModalWrapper">
       {!isSuccess ? (
         <div className="infoModalContainer">
-          <p className="basketModalTitle">Send all items to your shopping cart on the website?</p>
-            <div className="basketSubmitBlock">
-              <button
-                disabled={isDisabled}
-                onClick={onSubmit}
-                className="infoModalButton"
-              >
-                {isDisabled ? "..." : "SEND"}
-              </button>
-              <button onClick={onClick} className="infoModalButton">
-                CLOSE
-              </button>
-            </div>
+          <p className="basketModalTitle">
+            Send all items to your shopping cart on the website?
+          </p>
+          <div className="basketSubmitBlock">
+            <button
+              disabled={isDisabled}
+              onClick={onSubmit}
+              className="infoModalButton"
+            >
+              {isDisabled ? "..." : "SEND"}
+            </button>
+            <button onClick={onClick} className="infoModalButton">
+              CLOSE
+            </button>
+          </div>
         </div>
       ) : (
         <div className="infoModalContainer">
